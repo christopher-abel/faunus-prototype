@@ -25,9 +25,16 @@
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
             <Button
+                x:Name="AlertLocationButton"
+                Text="Alert Location" 
+                SemanticProperties.Hint="Alert the current geo location"
+                Clicked="AlertLocationButton_ClickedAsync"
+                HorizontalOptions="Fill" />
+            
+            <Button
                 x:Name="NotifyLocationButton"
                 Text="Notify Location" 
-                SemanticProperties.Hint="Notifies the current geo location"
+                SemanticProperties.Hint="Notification for the current geo location"
                 Clicked="NotifyLocationButton_ClickedAsync"
                 HorizontalOptions="Fill" />
 

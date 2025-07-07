@@ -1,5 +1,6 @@
 ﻿
 namespace FaunusMauiApp;
+using INotificationService;
 
 public partial class MainPage : ContentPage
 {
@@ -21,7 +22,7 @@ public partial class MainPage : ContentPage
         return location;
     }
 
-    private async void NotifyLocationButton_ClickedAsync(object sender, EventArgs e)
+    private async void AlertLocationButton_ClickedAsync(object sender, EventArgs e)
     {
         if (sender is Button button)
         {
@@ -34,6 +35,41 @@ public partial class MainPage : ContentPage
                 {
                     await DisplayAlert("Location",
                         $"Latitude: {location.Latitude}\nLongitude: {location.Longitude}", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Location", "Unable to get location.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Unable to get location: {ex.Message}", "OK");
+            }
+            finally
+            {
+                button.IsEnabled = true;
+            }
+        }
+    }
+
+    private async void NotifyLocationButton_ClickedAsync(object sender, EventArgs e)
+    {
+        if (sender is Button button)
+        {
+            button.IsEnabled = false;
+            try
+            {
+                var location = await GetLocationAsync();
+
+                if (location != null)
+                {
+                    string message = $"Latitude: {location.Latitude}\nLongitude: {location.Longitude}";
+
+#if ANDROID
+                    var notificationService =  
+                        Application.Current?.Services.GetService<INotificationService>();
+                    notificationService?.Show("Current Location", message);
+#endif
                 }
                 else
                 {
