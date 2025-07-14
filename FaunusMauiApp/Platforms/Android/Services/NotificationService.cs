@@ -1,6 +1,7 @@
 ﻿using Android;
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.OS;
 using AndroidX.Core.App;
 using AndroidX.Core.Content;
@@ -136,6 +137,7 @@ public class NotificationService : INotificationService
             .SetContentText(message)
             .SetStyle(new Notification.BigTextStyle().BigText(message))
             .SetSmallIcon(Resource.Drawable.ic_launcher)
+            .SetColor(ContextCompat.GetColor(context, Resource.Color.colorPrimary))
             .SetAutoCancel(true)
             .SetContentIntent(pendingIntent);
 
