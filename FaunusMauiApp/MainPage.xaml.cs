@@ -1,14 +1,17 @@
 ﻿
 namespace FaunusMauiApp;
-using INotificationService;
+using FaunusMauiApp.Services;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    private readonly INotificationService _notificationService;
 
-	public MainPage()
+    int count = 0;
+
+	public MainPage(INotificationService notificationService)
 	{
-		InitializeComponent();
+        _notificationService = notificationService;
+        InitializeComponent();
 	}
 
     private async Task<Location?> GetLocationAsync()
@@ -66,9 +69,7 @@ public partial class MainPage : ContentPage
                     string message = $"Latitude: {location.Latitude}\nLongitude: {location.Longitude}";
 
 #if ANDROID
-                    var notificationService =  
-                        Application.Current?.Services.GetService<INotificationService>();
-                    notificationService?.Show("Current Location", message);
+                    _notificationService.Show("Current Location", message);
 #endif
                 }
                 else
