@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970969679251",
+    "project_id": "faunus-prototype",
+    "storage_bucket": "faunus-prototype.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970969679251:android:12741aa871a53fd2c75466",
+        "android_client_info": {
+          "package_name": "com.boxspark.maui.faunus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiSyB87hPh3RJFvw_VBA24tsge7_jeGMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
